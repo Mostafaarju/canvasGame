@@ -96,11 +96,22 @@ class Particle {
 
 const x = canvas.width / 2;
 const y = canvas.height / 2;
-const player = new Player(x, y, 10, 'white');
 
-const projectiles = [];
-const enemies = [];
-const particles = [];
+let player = new Player(x, y, 10, 'white');
+let projectiles = [];
+let enemies = [];
+let particles = [];
+
+// for reset the Game
+function init() {
+  player = new Player(x, y, 10, 'white');
+  projectiles = [];
+  enemies = [];
+  particles = [];
+  score = 0;
+  scoreEl.innerHTML = score;
+  bigScoreEl.innerHTML = score;
+}
 
 function spawnEnemies() {
   setInterval(() => {
@@ -228,6 +239,7 @@ addEventListener('click', event => {
 });
 
 startGameBtn.addEventListener('click', () => {
+  init();
   animate();
   spawnEnemies();
   modalEl.style.display = 'none';
